@@ -2,7 +2,24 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const plugins = isDevelopment
+  ? [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('development'),
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+    ]
+  : [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+  ];
+const sourceMap = isDevelopment;
+
 module.exports = {
+  plugins,
   target: 'web',
   devtool: 'eval',
   entry: {
@@ -15,15 +32,10 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
+    path: path.resolve(__dirname, '../assets'),
     publicPath: '/assets/',
     libraryTarget: 'var',
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
   module: {
     loaders: [
       {
@@ -41,7 +53,7 @@ module.exports = {
           {
             loader: 'css-loader',
             query: {
-              sourceMap: false,
+              sourceMap,
               modules: true,
               importLoaders: 1,
               localIdentName: '[name]-[local]_[hash:base64:5]',
@@ -51,7 +63,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: () => autoprefixer(),
-              sourceMap: false,
+              sourceMap,
             },
           },
         ],
@@ -66,7 +78,7 @@ module.exports = {
           {
             loader: 'css-loader',
             query: {
-              sourceMap: false,
+              sourceMap,
               modules: true,
               importLoaders: 1,
               localIdentName: '[local]',
