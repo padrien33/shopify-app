@@ -6,7 +6,7 @@ const ENGINES = {
   MEMORY: 'memory',
 };
 
-class Store {
+module.exports = class Store {
   constructor(type = ENGINES.MEMORY) {
     switch (type) {
       case ENGINES.REDIS:
@@ -16,9 +16,4 @@ class Store {
         return new MemoryStore();
     }
   }
-}
-
-module.exports = {
-  Store,
-  ENGINES,
-}
+};

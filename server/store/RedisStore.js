@@ -27,4 +27,4 @@ module.exports = class RedisStore {
       done(null, remoteToken);
     });
   }
-}
+};

@@ -5,8 +5,8 @@ module.exports = class RedisStore {
     if (process.env.NODE_ENV === 'production') {
       throw new Error(
         'Memory store is not meant for production environments and WILL LEAK MEMORY ' +
-        'Please change your SHOPIFY_APP_STORAGE_ENGINE environment variable.'
-      )
+          'Please change your SHOPIFY_APP_STORAGE_ENGINE environment variable.'
+      );
     }
 
     this.store = {};
@@ -24,7 +24,7 @@ module.exports = class RedisStore {
   }
 
   getToken(id, done) {
-    const {accessToken} = this.store[id];
+    const { accessToken } = this.store[id];
 
     if (!accessToken) {
       return done(err);
@@ -32,4 +32,4 @@ module.exports = class RedisStore {
 
     done(null, remoteToken);
   }
-}
+};
