@@ -16,7 +16,7 @@ const config = require('../config/webpack.config.js');
 
 const shopifyAuth = require('./routes/shopifyAuth');
 const shopifyApiProxy = require('./routes/shopifyApiProxy');
-const persistentStore = require('./persistentStore');
+const store = require('./store');
 
 const shopifyConfig = {
   host: process.env.SHOPIFY_APP_HOST,
@@ -84,7 +84,7 @@ app.get('/', function(request, response) {
     response.redirect(`/auth/shopify?shop=${request.query.shop}`);
   }
 
-  persistentStore.storeUser({ accessToken, shop }, (err, userId) => {
+  store.storeUser({ accessToken, shop }, (err, userId) => {
     if (err) {
       return console.error('🔴 Error creating local token', err);
     }
