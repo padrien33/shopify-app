@@ -6,7 +6,7 @@ module.exports = class RedisStore {
     this.redis = Redis.createClient(redisClientConfig);
   }
 
-  storeUser({ accessToken, shop }, done) {
+  userIDForToken({ accessToken, shop }, done) {
     const id = uuid();
 
     this.redis.hmset(id, { accessToken, shop }, err => {
@@ -18,7 +18,7 @@ module.exports = class RedisStore {
     });
   }
 
-  getToken(id, done) {
+  tokenForUserID(id, done) {
     this.redis.hgetall(id, (err, remoteToken) => {
       if (err) {
         return done(err);

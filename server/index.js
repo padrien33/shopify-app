@@ -84,7 +84,7 @@ app.get('/', function(request, response) {
     response.redirect(`/auth/shopify?shop=${request.query.shop}`);
   }
 
-  store.storeUser({ accessToken, shop }, (err, userId) => {
+  store.userIDForToken({ accessToken, shop }, (err, userId) => {
     if (err) {
       return console.error('🔴 Error creating local token', err);
     }

@@ -12,7 +12,7 @@ module.exports = class RedisStore {
     this.store = {};
   }
 
-  storeUser({ accessToken, shop }, done) {
+  userIDForToken({ accessToken, shop }, done) {
     const id = uuid();
 
     this.store = {
@@ -23,7 +23,7 @@ module.exports = class RedisStore {
     done(null, id);
   }
 
-  getToken(id, done) {
+  tokenForUserID(id, done) {
     const { accessToken } = this.store[id];
 
     if (!accessToken) {
