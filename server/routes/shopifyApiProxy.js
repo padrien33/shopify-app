@@ -1,5 +1,5 @@
 const { URL } = require('url');
-const store = require('../persistentStore');
+const store = require('../store');
 
 const ALLOWED_URLS = ['/products', '/orders'];
 
@@ -8,7 +8,7 @@ module.exports = function shopifyApiProxy(request, response, next) {
 
   const { userId } = query;
 
-  return store.getToken(userId, (err, userData) => {
+  return store.tokenForUserID(userId, (err, userData) => {
     if (err) {
       return response.status(500).send(err);
     }
