@@ -1,5 +1,5 @@
 const { URL } = require('url');
-const store = require('../persistentStore');
+const store = require('../store');
 
 const ALLOWED_URLS = ['/products', '/orders'];
 

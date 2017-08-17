@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const store = require('../persistentStore');
+const store = require('../store');
 
 const { SHOPIFY_APP_SECRET } = process.env;
 
