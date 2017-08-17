@@ -46,18 +46,15 @@ module.exports = function shopifyApiProxy(request, response, next) {
         },
       };
 
-      fetchWithParams(
-        `https://${shop}/admin${path}`,
-        fetchOptions,
-        query
-      ).then(remoteResponse => {
-        remoteResponse
-          .json()
-          .then(responseBody => {
-            response.status(remoteResponse.status).send(responseBody);
-          })
-          .catch(err => response.err(err));
-      });
+      fetchWithParams(`https://${shop}/admin${path}`, fetchOptions, query)
+        .then((remoteResponse) => {
+          const {status} = remoteResponse
+          return Promise.all([remoteResponse.json(), status]);
+        })
+        .then(([responseBody, status]) => {
+          response.status(status).send(responseBody);
+        })
+        .catch(err => response.err(err));
     });
   });
 };
