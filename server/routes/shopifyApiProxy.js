@@ -1,5 +1,5 @@
 const { URL } = require('url');
-const store = require('../store');
+const shopStore = require('../shopStore');
 
 const ALLOWED_URLS = ['/products', '/orders'];
 
@@ -7,7 +7,7 @@ module.exports = function shopifyApiProxy(request, response, next) {
   const { query, method, path, body } = request;
   const { shop, token } = query;
 
-  store.verifyClientToken({ shop, token }, (err, valid) => {
+  shopStore.verifyClientToken({ shop, token }, (err, valid) => {
     if (err) {
       return response.status(500).send(err);
     }
@@ -16,7 +16,7 @@ module.exports = function shopifyApiProxy(request, response, next) {
       return response.status(401).send('Client token invalid');
     }
 
-    store.getUser({ shop }, (err, userData) => {
+    shopStore.getShop({ shop }, (err, userData) => {
       if (err) {
         return response.status(500).send(err);
       }

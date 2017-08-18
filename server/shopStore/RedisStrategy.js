@@ -6,7 +6,7 @@ module.exports = class RedisStore {
     this.client = Redis.createClient();
   }
 
-  storeUser({ shop, accessToken }, done) {
+  storeShop({ shop, accessToken }, done) {
     redis.hmset(shop, { accessToken, clientToken }, err => {
       if (err) {
         done(err);
@@ -16,7 +16,7 @@ module.exports = class RedisStore {
     });
   }
 
-  getUser({ shop }, done) {
+  getShop({ shop }, done) {
     redis.hgetall(shop, (err, { clientToken, accessToken }) => {
       if (err) {
         return done(err);

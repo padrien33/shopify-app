@@ -5,7 +5,7 @@ module.exports = class MemoryStore {
     this.store = {};
   }
 
-  storeUser({ shop, accessToken }, done) {
+  storeShop({ shop, accessToken }, done) {
     this.store[shop] = {
       accessToken,
       clientToken: uuid(),
@@ -14,7 +14,7 @@ module.exports = class MemoryStore {
     return done(null, this.store[shop]);
   }
 
-  getUser({ shop }, done) {
+  getShop({ shop }, done) {
     return done(null, this.store[shop]);
   }
 
