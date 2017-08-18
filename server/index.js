@@ -53,7 +53,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   session({
-    store: new RedisStore(),
+    store: isDevelopment ? undefined : new RedisStore(),
     secret: SHOPIFY_APP_SECRET,
     resave: true,
     saveUninitialized: false,
