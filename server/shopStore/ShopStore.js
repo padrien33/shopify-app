@@ -1,5 +1,5 @@
-const RedisStore = require('./RedisStrategy');
-const MemoryStore = require('./MemoryStrategy');
+const RedisStrategy = require('./RedisStrategy');
+const MemoryStrategy = require('./MemoryStrategy');
 
 const ENGINES = {
   REDIS: 'redis',
