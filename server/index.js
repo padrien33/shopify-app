@@ -14,7 +14,7 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../config/webpack.config.js');
 
-const { shopifyAuthRouter, withSecurity } = require('./routes/shopifyAuth');
+const { shopifyAuthRouter, withShop } = require('./routes/shopifyAuth');
 const shopifyApiProxy = require('./routes/shopifyApiProxy');
 const webhookRouter = require('./routes/webhooks');
 const shopStore = require('./shopStore');
@@ -63,7 +63,7 @@ app.use(
 app.get('/install', (req, res) => res.render('install'));
 app.use('/auth/shopify', shopifyAuthRouter(shopifyConfig));
 app.use('/webhooks', webhookRouter);
-app.use('/api', withSecurity({ redirect: false }), shopifyApiProxy);
+app.use('/api', withShop({ redirect: false }), shopifyApiProxy);
 
 // Run webpack hot reloading in dev
 if (isDevelopment) {
@@ -90,7 +90,7 @@ if (isDevelopment) {
   app.use('/assets', express.static(staticPath));
 }
 
-app.get('/', withSecurity(), function(request, response) {
+app.get('/', withShop(), function(request, response) {
   const { session: { shop, accessToken } } = request;
   if (!accessToken) {
     return response.redirect(`/auth/shopify?shop=${request.query.shop}`);

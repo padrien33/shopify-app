@@ -82,7 +82,7 @@ module.exports.shopifyAuthRouter = function({
   return router;
 };
 
-module.exports.withSecurity = function({ redirect } = { redirect: true }) {
+module.exports.withShop = function({ redirect } = { redirect: true }) {
   return function verifyRequest(request, response, next) {
     const { query: { shop }, session } = request;
 
