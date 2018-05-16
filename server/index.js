@@ -77,9 +77,15 @@ const {routes, middleware} = shopify;
 const {withShop, withWebhook} = middleware;
 
 app.use('/shopify', routes);
+app.use('/app/shopify', routes);
+
+app.get('/', function(request, response) {
+  response.status(200);
+  response.write("Hello! this is could be your app/developer homepage")
+})
 
 // Client
-app.get('/', withShop({authBaseUrl: '/shopify'}), function(request, response) {
+app.get('/app', withShop({authBaseUrl: 'shopify'}), function(request, response) {
   const { session: { shop, accessToken } } = request;
   response.render('app', {
     title: 'Shopify Node App',
