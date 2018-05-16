@@ -1,7 +1,6 @@
 {
   "name": "shopify-node-app",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "prod": "yarn run clean && yarn run build && cross-env NODE_ENV=production yarn run start",
     "dev": "react-scripts start",
