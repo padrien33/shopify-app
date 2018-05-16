@@ -3,7 +3,39 @@
 The goal of this example app is to provide a starting point for Shopify app developers so that they will be able to quickly
 spin up an embedded Shopify app using Node and Express.js and get started using the Polaris design system and React components.
 
-This example app uses Node, Express, Webpack, React, Redux, and Shopify/polaris
+This example app uses Node, Express, create-react-app, React, Redux, and Shopify/polaris
+
+## Table of Contents
+
+- [Features](#features)
+- [Commands](#commands)
+- [Running the project locally](#running-the-project-locally)
+  - [Install project dependencies](#install-project-dependencies)
+  - [Allow your app to talk to Shopify](#allow-your-app-to-talk-to-shopify)
+  - [Register your app in the Partner Dashboard](#register-your-app-in-the-partner-dashboard)
+  - [Configure and add to a store](#configure-and-add-to-a-store)
+- [Architecture](#architecture)
+  - [server](server)
+  - [shopify-express](shopify-express)
+  - [shopify-api-node](shopify-api-node)
+  - [client](client)
+- [Running Tests](#running-tests)
+  - [Filename Conventions](#filename-conventions)
+  - [Command Line Interface](#command-line-interface)
+  - [Version Control Integration](#version-control-integration)
+  - [Writing Tests](#writing-tests)
+  - [Testing Components](#testing-components)
+  - [Using Third Party Assertion Libraries](#using-third-party-assertion-libraries)
+  - [Initializing Test Environment](#initializing-test-environment)
+  - [Focusing and Excluding Tests](#focusing-and-excluding-tests)
+  - [Coverage Reporting](#coverage-reporting)
+  - [Continuous Integration](#continuous-integration)
+  - [Disabling jsdom](#disabling-jsdom)
+  - [Snapshot Testing](#snapshot-testing)
+  - [Editor Integration](#editor-integration)
+- [Debugging Tests](#debugging-tests)
+  - [Debugging Tests in Chrome](#debugging-tests-in-chrome)
+  - [Debugging Tests in Visual Studio Code](#debugging-tests-in-visual-studio-code)
 
 ## Features
 - [x] React app using [Polaris](https://polaris.shopify.com/)
@@ -18,6 +50,7 @@ This example app uses Node, Express, Webpack, React, Redux, and Shopify/polaris
 - `yarn run dev` run it in development mode with hotreloading
 - `yarn run prod` run it in production mode with compiled assets
 - `yarn run clean` clean the compiled assets directory
+- `yarn run test` run jest tests
 
 ## Running the project locally
 

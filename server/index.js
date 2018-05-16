@@ -8,11 +8,6 @@ const RedisStore = require('connect-redis')(session);
 const path = require('path');
 const logger = require('morgan');
 
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('../config/webpack.config.js');
-
 const ShopifyAPIClient = require('shopify-api-node');
 const ShopifyExpress = require('@shopify/shopify-express');
 const {MemoryStrategy} = require('@shopify/shopify-express/strategies');
@@ -67,29 +62,9 @@ app.use(
 );
 
 // Run webpack hot reloading in dev
-if (isDevelopment) {
-  const compiler = webpack(config);
-  const middleware = webpackMiddleware(compiler, {
-    hot: true,
-    inline: true,
-    publicPath: config.output.publicPath,
-    contentBase: 'src',
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false,
-    },
-  });
 
-  app.use(middleware);
-  app.use(webpackHotMiddleware(compiler));
-} else {
-  const staticPath = path.resolve(__dirname, '../assets');
-  app.use('/assets', express.static(staticPath));
-}
+const staticPath = path.resolve(__dirname, '../build');
+app.use('/assets', express.static(staticPath));
 
 // Install
 app.get('/install', (req, res) => res.render('install'));
