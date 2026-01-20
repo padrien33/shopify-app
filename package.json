@@ -43,7 +43,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "sqlite3": "^3.1.9",
+    "sqlite3": "^5.0.3",
     "url": "^0.11.0",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-middleware": "^1.5.1"
